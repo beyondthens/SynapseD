@@ -1,0 +1,6 @@
+{
+  "name": "SynapseMed - Intelligent Medical Practice Platform",
+  "description": "Next-generation medical practice management and AI-powered clinical assistant inspired by Healthbridge.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
