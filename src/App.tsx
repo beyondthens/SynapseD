@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   Shield, CheckCircle2, ArrowRight, Activity, FileText, Users, DollarSign, 
   Clock, Stethoscope, ChevronRight, Star, Menu, X, Play, Sparkles, 
-  Lock, Zap, RefreshCw, Award, HeartPulse, PhoneCall, Building2, HelpCircle
+  Lock, Zap, RefreshCw, Award, HeartPulse, PhoneCall, Building2, HelpCircle, Smartphone
 } from 'lucide-react';
 
 export default function App() {
@@ -12,6 +12,9 @@ export default function App() {
   const [consultMode, setConsultMode] = useState<'scribe' | 'billing'>('billing');
   const [consultResult, setConsultResult] = useState<string | null>(null);
   const [loadingAi, setLoadingAi] = useState(false);
+
+  // Active Mobile App Preview tab
+  const [activeMobileTab, setActiveMobileTab] = useState<'cardiotrack' | 'medigig'>('cardiotrack');
 
   // ROI Calculator state
   const [patientsPerDay, setPatientsPerDay] = useState(25);
@@ -86,9 +89,9 @@ export default function App() {
       {/* Top Banner Notice */}
       <div className="bg-gradient-to-r from-teal-900 via-emerald-800 to-teal-950 text-white text-xs md:text-sm py-2 px-4 text-center font-medium flex items-center justify-center gap-2 shadow-inner">
         <Sparkles className="w-4 h-4 text-teal-300 animate-pulse" />
-        <span>SynapseMed v3.2 Released: Enhanced POPIA Encryption & Discovery Health Direct Switch Integration</span>
-        <a href="#demo" className="underline hover:text-teal-200 ml-2 font-semibold flex items-center gap-1">
-          Request Practice Migration <ArrowRight className="w-3 h-3" />
+        <span>Synapse Digital Mobile Suite: Introducing CardioTrack & MediGig Mobile Apps</span>
+        <a href="#mobile-ecosystem" className="underline hover:text-teal-200 ml-2 font-semibold flex items-center gap-1">
+          View Mobile Apps <ArrowRight className="w-3 h-3" />
         </a>
       </div>
 
@@ -109,14 +112,16 @@ export default function App() {
 
           {/* Desktop Nav Links */}
           <nav className="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600">
-            <a href="#pain" className="hover:text-teal-700 transition-colors">Why SynapseMed</a>
+            <a href="#pain" className="hover:text-teal-700 transition-colors">Why Synapse Digital</a>
             <a href="#features" className="hover:text-teal-700 transition-colors">Features</a>
+            <a href="#mobile-ecosystem" className="hover:text-teal-700 transition-colors flex items-center gap-1 text-emerald-700 font-bold">
+              <Smartphone className="w-3.5 h-3.5" /> Mobile Apps
+            </a>
             <a href="#ai-demo" className="hover:text-teal-700 transition-colors flex items-center gap-1.5 text-teal-700 font-semibold">
               <Sparkles className="w-4 h-4 text-teal-600" /> AI Assistant
             </a>
             <a href="#calculator" className="hover:text-teal-700 transition-colors">ROI Calculator</a>
-            <a href="#testimonials" className="hover:text-teal-700 transition-colors">Testimonials</a>
-            <a href="#pricing" className="hover:text-teal-700 transition-colors">Pricing</a>
+            <a href="#pricing" className="hover:text-teal-700 transition-colors">Preorder</a>
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
@@ -147,12 +152,12 @@ export default function App() {
         {/* Mobile menu */}
         {mobileMenuOpen && (
           <div className="md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3 shadow-xl">
-            <a href="#pain" onClick={() => setMobileMenuOpen(false)} className="block py-2 font-medium text-slate-700">Why SynapseMed</a>
+            <a href="#pain" onClick={() => setMobileMenuOpen(false)} className="block py-2 font-medium text-slate-700">Why Synapse Digital</a>
             <a href="#features" onClick={() => setMobileMenuOpen(false)} className="block py-2 font-medium text-slate-700">Features</a>
+            <a href="#mobile-ecosystem" onClick={() => setMobileMenuOpen(false)} className="block py-2 font-medium text-emerald-700 font-bold">Mobile Apps (CardioTrack & MediGig)</a>
             <a href="#ai-demo" onClick={() => setMobileMenuOpen(false)} className="block py-2 font-medium text-teal-700 font-semibold">AI Assistant Demo</a>
             <a href="#calculator" onClick={() => setMobileMenuOpen(false)} className="block py-2 font-medium text-slate-700">ROI Calculator</a>
-            <a href="#testimonials" onClick={() => setMobileMenuOpen(false)} className="block py-2 font-medium text-slate-700">Testimonials</a>
-            <a href="#pricing" onClick={() => setMobileMenuOpen(false)} className="block py-2 font-medium text-slate-700">Pricing</a>
+            <a href="#pricing" onClick={() => setMobileMenuOpen(false)} className="block py-2 font-medium text-slate-700">Preorder Pricing</a>
             <div className="pt-2 flex flex-col gap-2">
               <button 
                 onClick={() => { setMobileMenuOpen(false); setDemoModalOpen(true); }}
@@ -167,7 +172,6 @@ export default function App() {
 
       {/* Hero Section with Slider & Black Woman Doctor Image */}
       <section className="relative bg-gradient-to-b from-slate-900 via-teal-950 to-slate-900 text-white overflow-hidden py-20 lg:py-28">
-        {/* Background glow effects */}
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
 
@@ -198,15 +202,14 @@ export default function App() {
                   <ArrowRight className="w-5 h-5" />
                 </button>
                 <a 
-                  href="#ai-demo"
+                  href="#mobile-ecosystem"
                   className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold px-8 py-4 rounded-2xl transition-all flex items-center justify-center gap-2.5 backdrop-blur-md"
                 >
-                  <Sparkles className="w-5 h-5 text-teal-300" />
-                  <span>Test AI Clinical Scribe</span>
+                  <Smartphone className="w-5 h-5 text-emerald-300" />
+                  <span>Explore Mobile Apps</span>
                 </a>
               </div>
 
-              {/* Trust badges row */}
               <div className="pt-8 border-t border-slate-800 grid grid-cols-3 gap-4 text-slate-400 text-xs sm:text-sm">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -247,7 +250,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Slide indicators */}
               <div className="flex justify-center gap-2 mt-4">
                 {heroSlides.map((_, idx) => (
                   <button
@@ -279,7 +281,7 @@ export default function App() {
         </div>
       </div>
 
-      {/* Pain Marketing Section: The Healthcare Reality Check */}
+      {/* Pain Marketing Section */}
       <section id="pain" className="py-20 bg-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
@@ -295,12 +297,9 @@ export default function App() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Pain Point 1 */}
             <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
               <div className="absolute top-0 left-0 w-2 h-full bg-rose-500" />
-              <div className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center font-bold text-xl mb-6">
-                01
-              </div>
+              <div className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center font-bold text-xl mb-6">01</div>
               <h3 className="text-xl font-bold text-slate-900 mb-3">Claim Rejections & Cash Flow Delays</h3>
               <p className="text-slate-600 leading-relaxed">
                 Coding errors, mismatched ICD-10 modifiers, and rejected submissions from medical schemes mean thousands in uncollected revenue and months of frustrating follow-up calls.
@@ -310,12 +309,9 @@ export default function App() {
               </div>
             </div>
 
-            {/* Pain Point 2 */}
             <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
               <div className="absolute top-0 left-0 w-2 h-full bg-amber-500" />
-              <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-xl mb-6">
-                02
-              </div>
+              <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-xl mb-6">02</div>
               <h3 className="text-xl font-bold text-slate-900 mb-3">Endless After-Hours Admin Burnout</h3>
               <p className="text-slate-600 leading-relaxed">
                 Spending 2+ hours every evening typing up patient notes, organizing lab results, and reviewing billing codes instead of resting or spending time with family.
@@ -325,12 +321,9 @@ export default function App() {
               </div>
             </div>
 
-            {/* Pain Point 3 */}
             <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
               <div className="absolute top-0 left-0 w-2 h-full bg-indigo-500" />
-              <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-xl mb-6">
-                03
-              </div>
+              <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-xl mb-6">03</div>
               <h3 className="text-xl font-bold text-slate-900 mb-3">Fragmented Patient Records & No-Shows</h3>
               <p className="text-slate-600 leading-relaxed">
                 Juggling disconnected diary systems, lost physical folders, and high patient no-show rates due to lack of automated SMS reminders and patient portal engagement.
@@ -343,12 +336,115 @@ export default function App() {
         </div>
       </section>
 
-      {/* The SynapseMed Solution Section */}
+      {/* MOBILE APPS ECOSYSTEM SHOWCASE SECTION (CardioTrack & MediGig Mobile Apps) */}
+      <section id="mobile-ecosystem" className="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div className="absolute top-1/2 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-black uppercase tracking-widest">
+              <Smartphone className="w-4 h-4 text-emerald-300" /> Synapse Digital Mobile Apps
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight">
+              Experience CardioTrack & MediGig on Mobile
+            </h2>
+            <p className="text-slate-300 text-lg">
+              Powerful iOS and Android companion mobile apps built for doctors on the move. Explore the live mobile interfaces below.
+            </p>
+
+            {/* Tab buttons */}
+            <div className="flex justify-center gap-4 pt-4">
+              <button 
+                onClick={() => setActiveMobileTab('cardiotrack')}
+                className={`px-6 py-3 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${activeMobileTab === 'cardiotrack' ? 'bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/30' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
+              >
+                <HeartPulse className="w-4 h-4" /> CardioTrack Mobile App (iOS / Android)
+              </button>
+              <button 
+                onClick={() => setActiveMobileTab('medigig')}
+                className={`px-6 py-3 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${activeMobileTab === 'medigig' ? 'bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/30' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
+              >
+                <Smartphone className="w-4 h-4" /> MediGig Mobile App (Locum Shifts)
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Phone Mockup Display Grid */}
+          <div className="grid lg:grid-cols-12 gap-12 items-center max-w-5xl mx-auto bg-slate-800/80 backdrop-blur-md rounded-3xl border-2 border-emerald-500/40 p-8 sm:p-12 shadow-2xl">
+            
+            {/* Left: Mobile Phone Graphic with Generated Image */}
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="relative w-[280px] sm:w-[320px] rounded-[48px] bg-slate-950 p-4 shadow-2xl border-4 border-slate-700">
+                <div className="absolute top-6 left-1/2 -translate-x-1/2 w-32 h-5 bg-slate-900 rounded-full z-20 flex items-center justify-center">
+                  <div className="w-3 h-3 rounded-full bg-slate-800 mr-2" />
+                  <div className="w-12 h-1.5 rounded-full bg-slate-800" />
+                </div>
+                <div className="rounded-[36px] overflow-hidden bg-black pt-5">
+                  <img 
+                    src={activeMobileTab === 'cardiotrack' ? "/src/assets/images/cardiotrack_mobile_ui_1793980554730.jpg" : "/src/assets/images/medigig_mobile_ui_1793980554752.jpg"} 
+                    alt="Mobile App UI" 
+                    className="w-full h-[520px] object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Right: App Details & Preorder Links */}
+            <div className="lg:col-span-7 space-y-6">
+              {activeMobileTab === 'cardiotrack' ? (
+                <>
+                  <div className="inline-block bg-emerald-500/20 text-emerald-300 text-xs font-bold px-3 py-1 rounded-full border border-emerald-500/30">
+                    CardioTrack Mobile • AI ECG Telemetry
+                  </div>
+                  <h3 className="text-3xl font-black text-white">Advanced Cardiac Monitoring in Your Pocket</h3>
+                  <p className="text-slate-300 text-sm leading-relaxed">
+                    CardioTrack puts hospital-grade ECG rhythm analysis, QTc interval tracking, and automated AI arrhythmia alerts directly onto your smartphone. Monitor patient telemetry securely from anywhere in South Africa.
+                  </p>
+                  <ul className="space-y-2.5 text-sm text-slate-300">
+                    <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> Real-time 12-lead ECG waveform viewer</li>
+                    <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> Instant AFib & PVC push notifications</li>
+                    <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> Secure cloud sync with patient EHR files</li>
+                  </ul>
+                  <div className="pt-4 flex flex-wrap gap-4">
+                    <a href="#pricing" className="bg-emerald-400 hover:bg-emerald-500 text-slate-950 font-bold px-6 py-3.5 rounded-2xl shadow-lg transition-all flex items-center gap-2">
+                      <span>Preorder CardioTrack (50% Off)</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="inline-block bg-teal-500/20 text-teal-300 text-xs font-bold px-3 py-1 rounded-full border border-teal-500/30">
+                    MediGig Mobile • Shift & Locum Marketplace
+                  </div>
+                  <h3 className="text-3xl font-black text-white">Find & Book Medical Shifts Instantly</h3>
+                  <p className="text-slate-300 text-sm leading-relaxed">
+                    MediGig connects verified doctors and nurses with top South African hospitals (Netcare, Mediclinic, Life Healthcare, Groote Schuur) for high-paying locum shifts with instant mobile booking and automated SARS invoicing.
+                  </p>
+                  <ul className="space-y-2.5 text-sm text-slate-300">
+                    <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> One-tap shift booking with verified pay rates (R750 - R1,400/hr)</li>
+                    <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> HPCSA credential badge verification</li>
+                    <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> Automated tax invoicing & weekly payout tracking</li>
+                  </ul>
+                  <div className="pt-4 flex flex-wrap gap-4">
+                    <a href="#pricing" className="bg-emerald-400 hover:bg-emerald-500 text-slate-950 font-bold px-6 py-3.5 rounded-2xl shadow-lg transition-all flex items-center gap-2">
+                      <span>Preorder MediGig (52% Off)</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </div>
+                </>
+              )}
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* The Synapse Digital Solution Section */}
       <section id="features" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-20">
             <div className="inline-flex items-center gap-2 text-teal-700 font-bold text-xs uppercase tracking-widest bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
-              <Zap className="w-3.5 h-3.5" /> The SynapseMed Advantage
+              <Zap className="w-3.5 h-3.5" /> The Synapse Digital Advantage
             </div>
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900">
               Designed for Doctors Who Value Precision & Peace of Mind
@@ -368,7 +464,7 @@ export default function App() {
                 <div>
                   <h3 className="text-xl font-bold text-slate-900 mb-2">AI-Powered Clinical Scribe & SOAP Notes</h3>
                   <p className="text-slate-600 leading-relaxed">
-                    Dictate or type rough notes during consultations. SynapseMed AI instantly structures them into professional SOAP notes, prescriptions, and referral letters in seconds.
+                    Dictate or type rough notes during consultations. Synapse Digital AI instantly structures them into professional SOAP notes, prescriptions, and referral letters in seconds.
                   </p>
                 </div>
               </div>
@@ -408,7 +504,7 @@ export default function App() {
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3 rounded-full bg-emerald-400 animate-ping" />
-                  <span className="font-bold text-sm tracking-wide">SynapseMed EHR & Billing Suite</span>
+                  <span className="font-bold text-sm tracking-wide">Synapse Digital EHR & Billing Suite</span>
                 </div>
                 <span className="text-xs text-teal-300">Secure 256-bit SSL</span>
               </div>
@@ -451,7 +547,7 @@ export default function App() {
               <Sparkles className="w-4 h-4 text-teal-300" /> Interactive Feature Demo
             </div>
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight">
-              Test SynapseMed AI Clinical Assistant
+              Test Synapse Digital AI Clinical Assistant
             </h2>
             <p className="text-slate-300 text-lg">
               Experience how our embedded Gemini AI engine automatically validates ICD-10 billing codes or formats clinical SOAP notes instantly.
@@ -496,7 +592,7 @@ export default function App() {
                 {loadingAi ? (
                   <>
                     <RefreshCw className="w-5 h-5 animate-spin" />
-                    <span>Analyzing with SynapseMed AI...</span>
+                    <span>Analyzing with Synapse Digital AI...</span>
                   </>
                 ) : (
                   <>
@@ -510,7 +606,7 @@ export default function App() {
             {consultResult && (
               <div className="mt-8 bg-slate-900 border border-teal-500/50 rounded-2xl p-6 animate-fadeIn">
                 <div className="flex items-center gap-2 text-teal-400 font-semibold mb-3 text-sm">
-                  <CheckCircle2 className="w-4 h-4" /> SynapseMed AI Output
+                  <CheckCircle2 className="w-4 h-4" /> Synapse Digital AI Output
                 </div>
                 <div className="text-slate-200 text-sm whitespace-pre-wrap font-mono leading-relaxed">
                   {consultResult}
@@ -532,7 +628,7 @@ export default function App() {
               Calculate Your Practice Revenue Recovery
             </h2>
             <p className="text-slate-600 text-lg">
-              See how much revenue and time SynapseMed unlocks by eliminating rejections and reducing admin hours.
+              See how much revenue and time Synapse Digital unlocks by eliminating rejections and reducing admin hours.
             </p>
           </div>
 
@@ -606,7 +702,7 @@ export default function App() {
               Loved by South Africa’s Top Healthcare Professionals
             </h2>
             <p className="text-slate-600 text-lg">
-              Read how SynapseMed transformed daily workflows for doctors across Johannesburg, Cape Town, and Durban.
+              Read how Synapse Digital transformed daily workflows for doctors across Johannesburg, Cape Town, and Durban.
             </p>
           </div>
 
@@ -619,13 +715,11 @@ export default function App() {
                   ))}
                 </div>
                 <p className="text-slate-700 italic">
-                  "Switching to SynapseMed was the best decision for my practice. Claim rejections dropped to virtually zero, and the AI scribe saves me hours every single evening."
+                  "Switching to Synapse Digital was the best decision for my practice. Claim rejections dropped to virtually zero, and the AI scribe saves me hours every single evening."
                 </p>
               </div>
               <div className="mt-8 pt-4 border-t border-slate-200 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center">
-                  DR
-                </div>
+                <div className="w-10 h-10 rounded-full bg-teal-700 text-white font-bold flex items-center justify-center">DR</div>
                 <div>
                   <div className="font-bold text-slate-900">Dr. D. Radebe</div>
                   <div className="text-xs text-slate-500">General Practitioner, Sandton</div>
@@ -645,9 +739,7 @@ export default function App() {
                 </p>
               </div>
               <div className="mt-8 pt-4 border-t border-slate-200 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-emerald-700 text-white font-bold flex items-center justify-center">
-                  MN
-                </div>
+                <div className="w-10 h-10 rounded-full bg-emerald-700 text-white font-bold flex items-center justify-center">MN</div>
                 <div>
                   <div className="font-bold text-slate-900">Dr. M. Naidoo</div>
                   <div className="text-xs text-slate-500">Paediatrician, Durban</div>
@@ -663,13 +755,11 @@ export default function App() {
                   ))}
                 </div>
                 <p className="text-slate-700 italic">
-                  "POPIA compliance and data security were our top priorities. SynapseMed gave us enterprise-grade security with an interface that is an absolute joy to use."
+                  "POPIA compliance and data security were our top priorities. Synapse Digital gave us enterprise-grade security with an interface that is an absolute joy to use."
                 </p>
               </div>
               <div className="mt-8 pt-4 border-t border-slate-200 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-blue-700 text-white font-bold flex items-center justify-center">
-                  SK
-                </div>
+                <div className="w-10 h-10 rounded-full bg-blue-700 text-white font-bold flex items-center justify-center">SK</div>
                 <div>
                   <div className="font-bold text-slate-900">Dr. S. Khumalo</div>
                   <div className="text-xs text-slate-500">Specialist Surgeon, Cape Town</div>
@@ -689,7 +779,7 @@ export default function App() {
               <Sparkles className="w-4 h-4 text-emerald-300" /> Early Access Preorder Event • Save up to 50%
             </div>
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight">
-              Preorder SynapseMed & Ecosystem Suite
+              Preorder Synapse Digital Suite
             </h2>
             <p className="text-slate-300 text-lg">
               Secure founding member lifetime discounts for your practice before our nationwide Q2 rollout. Lock in grandfathered rates today.
@@ -732,20 +822,20 @@ export default function App() {
             {/* CardioTrack App */}
             <div className="bg-gradient-to-b from-teal-900 to-slate-900 p-8 rounded-3xl border-2 border-emerald-500 flex flex-col justify-between relative shadow-2xl">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-400 text-slate-950 font-black text-xs uppercase px-4 py-1 rounded-full shadow">
-                New • Preorder Special
+                Mobile App • Preorder Special
               </div>
               <div className="space-y-6 pt-2">
                 <div>
-                  <div className="text-emerald-300 font-bold text-sm">CardioTrack AI ECG Suite</div>
+                  <div className="text-emerald-300 font-bold text-sm">CardioTrack Mobile (iOS / Android)</div>
                   <div className="flex items-baseline gap-2 mt-2">
                     <span className="text-4xl font-black">R 590</span>
                     <span className="text-sm text-slate-300 line-through">R 1,190/mo</span>
                     <span className="bg-emerald-400 text-slate-950 text-xs px-2 py-0.5 rounded font-black">50% OFF</span>
                   </div>
-                  <p className="text-slate-300 text-xs mt-1">Advanced 12-lead ECG analysis & arrhythmia detection.</p>
+                  <p className="text-slate-300 text-xs mt-1">Advanced 12-lead mobile ECG analysis & arrhythmia alerts.</p>
                 </div>
                 <ul className="space-y-3 text-sm text-slate-200">
-                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> AI Arrhythmia & QT Alert Engine</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> AI Arrhythmia & QT Mobile Engine</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> Holter Monitor Cloud Sync</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> Patient Wearable Integration</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> Instant Cardiology PDF Reports</li>
@@ -755,7 +845,7 @@ export default function App() {
                 onClick={() => setDemoModalOpen(true)}
                 className="mt-8 w-full bg-emerald-400 hover:bg-emerald-500 text-slate-950 font-bold py-4 rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2"
               >
-                <span>Preorder CardioTrack</span>
+                <span>Preorder CardioTrack App</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -763,21 +853,21 @@ export default function App() {
             {/* MediGig App */}
             <div className="bg-slate-800/90 backdrop-blur-md p-8 rounded-3xl border border-teal-500/40 flex flex-col justify-between shadow-2xl relative">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-teal-500 text-slate-950 font-black text-xs uppercase px-4 py-1 rounded-full shadow">
-                Locum & Shift Marketplace
+                Mobile App • Shift Marketplace
               </div>
               <div className="space-y-6 pt-2">
                 <div>
-                  <div className="text-teal-400 font-bold text-sm">MediGig Locum Network</div>
+                  <div className="text-teal-400 font-bold text-sm">MediGig Mobile (iOS / Android)</div>
                   <div className="flex items-baseline gap-2 mt-2">
                     <span className="text-4xl font-black">R 450</span>
                     <span className="text-sm text-slate-400 line-through">R 950/mo</span>
                     <span className="bg-emerald-500/20 text-emerald-300 text-xs px-2 py-0.5 rounded font-bold">52% OFF</span>
                   </div>
-                  <p className="text-slate-400 text-xs mt-1">Connect with verified locum doctors and nursing staff.</p>
+                  <p className="text-slate-400 text-xs mt-1">Connect with verified locum shifts on mobile.</p>
                 </div>
                 <ul className="space-y-3 text-sm text-slate-300">
-                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> Instant Shift Matching & Booking</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> HPCSA Credential Verification</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> Instant Mobile Shift Booking</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> HPCSA Credential Mobile Badge</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> Automated Payroll & SARS Invoicing</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> Zero Commission on First 10 Shifts</li>
                 </ul>
@@ -786,7 +876,7 @@ export default function App() {
                 onClick={() => setDemoModalOpen(true)}
                 className="mt-8 w-full bg-teal-600 hover:bg-teal-500 text-white font-bold py-4 rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2"
               >
-                <span>Preorder MediGig</span>
+                <span>Preorder MediGig App</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -806,7 +896,7 @@ export default function App() {
               <span className="text-xl font-black text-white">Synapse Digital</span>
             </div>
             <p className="text-sm text-slate-400">
-              South Africa’s premier intelligent medical practice platform and AI clinical assistant suite.
+              South Africa’s premier intelligent medical practice platform and mobile app suite.
             </p>
           </div>
 
@@ -815,8 +905,8 @@ export default function App() {
             <ul className="space-y-2 text-sm">
               <li><a href="#features" className="hover:text-white transition-colors">EHR & Clinical Notes</a></li>
               <li><a href="#ai-demo" className="hover:text-white transition-colors">AI Clinical Scribe</a></li>
-              <li><a href="#calculator" className="hover:text-white transition-colors">Medical Aid Switching</a></li>
-              <li><a href="#pricing" className="hover:text-white transition-colors">Pricing Plans</a></li>
+              <li><a href="#mobile-ecosystem" className="hover:text-white transition-colors">CardioTrack Mobile App</a></li>
+              <li><a href="#mobile-ecosystem" className="hover:text-white transition-colors">MediGig Mobile App</a></li>
             </ul>
           </div>
 
@@ -831,11 +921,14 @@ export default function App() {
           </div>
 
           <div>
-            <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4">Get in Touch</h4>
-            <ul className="space-y-2 text-sm">
-              <li>Support: support@synapsemed.co.za</li>
-              <li>Johannesburg: +27 (0)11 555 0192</li>
-              <li>Cape Town: +27 (0)21 555 0193</li>
+            <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4">Direct WhatsApp Support</h4>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <a href="https://wa.me/27645510575" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-emerald-400 font-semibold hover:underline">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"/> +27 64 551 0575
+                </a>
+              </li>
+              <li className="text-slate-400 text-xs">Available Mon-Fri 8am - 6pm SAST for instant practice onboarding.</li>
             </ul>
           </div>
         </div>
@@ -844,6 +937,25 @@ export default function App() {
           © {new Date().getFullYear()} Synapse Digital (Pty) Ltd. All rights reserved. Inspired by healthbridge.co.za visual trust standards.
         </div>
       </footer>
+
+      {/* Floating WhatsApp Chat Bubble */}
+      <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 group">
+        <div className="hidden group-hover:flex items-center bg-white text-slate-900 text-xs font-bold py-2 px-4 rounded-2xl shadow-lg border border-slate-200 animate-fadeIn">
+          Chat on WhatsApp (+27 64 551 0575)
+        </div>
+        <a 
+          href="https://wa.me/27645510575?text=Hi%20Synapse%20Digital,%20I'm%20interested%20in%20preordering%20SynapseMed%20and%20Mobile%20Apps." 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center shadow-2xl transition-all transform hover:scale-110 flex-shrink-0 relative"
+          aria-label="Chat on WhatsApp"
+        >
+          <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white flex items-center justify-center text-[9px] font-bold">1</span>
+          <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+          </svg>
+        </a>
+      </div>
 
       {/* Demo Modal */}
       {demoModalOpen && (
@@ -861,7 +973,7 @@ export default function App() {
                 <div className="w-12 h-12 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center mb-6">
                   <Stethoscope className="w-6 h-6" />
                 </div>
-                <h3 className="text-2xl font-black text-slate-900 mb-2">Book Your Live SynapseMed Demo</h3>
+                <h3 className="text-2xl font-black text-slate-900 mb-2">Book Your Live Synapse Digital Demo</h3>
                 <p className="text-slate-600 text-sm mb-6">
                   Experience a personalized walk-through with our South African healthcare practice specialists.
                 </p>
